@@ -15,8 +15,8 @@ const Home: NextPage = () => {
 
 	const [first, second] = ids;
 
-	const firstPokemon: any = trpc.useQuery(['get-pokemon-by-id', { id: first }]);
-	const secondPokemon: any = trpc.useQuery(['get-pokemon-by-id', { id: second }]);
+	const firstPokemon = trpc.useQuery(['get-pokemon-by-id', { id: first }]);
+	const secondPokemon = trpc.useQuery(['get-pokemon-by-id', { id: second }]);
 
 	const voteMutation = trpc.useMutation(['cast-vote']);
 
