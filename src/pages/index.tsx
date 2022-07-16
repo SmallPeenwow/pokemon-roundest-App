@@ -3,9 +3,12 @@ import { trpc } from '@/utils/trpc';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useMemo } from 'react';
 
 const Home: NextPage = () => {
-	const [first, second] = getOptionsForVote();
+	const [first, second] = useMemo(() => getOptionsForVote(), []?);
+
+	const firstPokemon = trpc.useQuery(['get-pokemon-by-id', { id: first }]);
 
 	return (
 		<div className='h-screen w-screen flex flex-col justify-center items-center'>
