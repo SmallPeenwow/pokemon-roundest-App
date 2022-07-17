@@ -1,7 +1,6 @@
 import { getOptionsForVote } from '@/utils/getRandomPokemon';
 import { trpc } from '@/utils/trpc';
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import Image from 'next/image';
 import type React from 'react';
 import { useState } from 'react';
@@ -51,10 +50,10 @@ const Home: NextPage = () => {
 
 type PokemonFromServer = inferQueryResponse<'get-pokemon-by-id'>;
 
-const PokemonListing: React.FC<{ pokemon: PokemonFromServer; vote: () => void }> = (props) => {
+const PokemonListing: React.FC<{ pokemon: PokemonFromServer; vote: () => void }> = (props: any) => {
 	return (
 		<div className='flex flex-col items-center'>
-			<img src={props.pokemon.sprites.front_default} alt={props.pokemon.name} className='w-64 h-64' />
+			<Image src={props.pokemon.sprites.front_default} alt={props.pokemon.name} layout='fixed' width={256} height={256} />
 			<div className='text-xl text-center capitalize mt-[-2rem]'>{props.pokemon.name}</div>
 			<button className='btn' onClick={() => props.vote()}>
 				Rounder
