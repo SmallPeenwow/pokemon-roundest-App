@@ -25,7 +25,6 @@ const Home: NextPage = () => {
 		} else {
 			voteMutation.mutate({ votedFor: second, votedAgainst: first });
 		}
-		// TODO: fire mutation to persist changes
 
 		updateIds(getOptionsForVote());
 	};
