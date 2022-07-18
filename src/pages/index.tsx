@@ -30,21 +30,24 @@ const Home: NextPage = () => {
 		updateIds(getOptionsForVote());
 	};
 
+	const dataLoaded = !firstPokemon.isLoading && firstPokemon.data && !secondPokemon.isLoading && secondPokemon.data;
+
 	return (
-		<div className='h-screen w-screen flex flex-col justify-center items-center relative'>
-			<div className='text-2xl text-center'>Which Pokemon is Rounder?</div>
+		<div className='h-screen w-screen flex flex-col justify-between items-center relative'>
+			<div className='text-2xl text-center pt-8'>Which Pokemon is Rounder?</div>
 			<div className='p-2' />
-			<div className='border rounded p-8 flex justify-between items-center max-w-2xl'>
-				{!firstPokemon.isLoading && firstPokemon.data && !secondPokemon.isLoading && secondPokemon.data && (
-					<>
+			{dataLoaded && (
+				<div className='border rounded p-8 flex justify-between items-center max-w-2xl'>
+					<div className='p-8 flex justify-between items-center max-w-2xl flex-col md:flex-row animate-fade-in'>
 						<PokemonListing pokemon={firstPokemon.data} vote={() => voteForRoundest(first)} />
 						<div className='p-8'>VS</div>
 						<PokemonListing pokemon={secondPokemon.data} vote={() => voteForRoundest(second)} />
-					</>
-				)}
-				<div className='p-2' />
-			</div>
-			<div className='absolute bottom-0 w-full text-xl text-center pb-2'>
+						<div className='p-2' />
+					</div>
+				</div>
+			)}
+			{!dataLoaded && <Image src='/rings.svg' width={192} layout='fill' alt='loading' />}
+			<div className='w-full text-xl text-center pb-2'>
 				<a href='https://github.com/SmallPeenwow/pokemon-roundest-App'>Github</a> {' | '}
 				<Link href='/results'>
 					<a>Results</a>
