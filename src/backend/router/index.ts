@@ -1,17 +1,16 @@
 import * as trpc from '@trpc/server';
 import { z } from 'zod';
 import { prisma } from '@/backend/utils/prisma';
-import { PokemonClient } from 'pokenode-ts';
 
 export const appRouter = trpc
 	.router()
 	.query('get-pokemon-by-id', {
 		input: z.object({ id: z.number() }),
 		async resolve({ input }) {
-			const pokeApiConnection = new PokemonClient();
+			const pokemon = await prisma.pokemon.findFirst({ where: { id: input.id } });
 
-			const pokemon = await pokeApiConnection.getPokemonById(input.id);
-			return { name: pokemon.name, sprites: pokemon.sprites };
+			if (!pokemon) throw new Error("Doesn't exist.");
+			return { name: pokemon.name, spriteUrl: pokemon.spriteUrl };
 		},
 	})
 	.mutation('cast-vote', {
