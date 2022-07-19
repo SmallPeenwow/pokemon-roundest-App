@@ -58,9 +58,11 @@ const ResultPage: React.FC<{ pokemon: AsyncReturnType<typeof getPokemonInOrder> 
 			<Head>
 				<title>Roundest Pokemon Results</title>
 			</Head>
-			<h2 className='text-2xl p-4'>Result</h2>
+			<h2 className='text-2xl p-4 cursor-default'>Result</h2>
 			<Link href='/'>
-				<a className='absolute top-2 left-2 px-4 py-2 rounded-lg font-semibold text-black bg-neutral-300 items-center hover:bg-neutral-400'>Back</a>
+				<a className='absolute top-2 left-2 px-4 py-2 rounded-lg font-semibold text-black  bg-neutral-50 items-center hover:bg-neutral-200 hover:scale-95'>
+					Back
+				</a>
 			</Link>
 
 			<div className='flex flex-col w-full max-w-2xl border'>

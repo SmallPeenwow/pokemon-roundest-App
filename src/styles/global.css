@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-	@apply text-white bg-gray-800;
+	@apply text-white font-semibold bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-600;
 }
